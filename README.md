@@ -76,6 +76,30 @@ module.exports = {
     }
 };
 ```
+If you need to use multiple comment tags in one file to mark the start and end of the block to strip from your code, you can add options for "start" and "end" like this:
+
+```javascript
+var blocks = ['develblock'];
+module.exports = {
+  rules: [
+    {
+      test: /\.html$/,
+      enforce: 'pre',
+      use: [
+        {
+          loader: 'webpack-strip-block',
+          options: {
+            blocks: blocks,
+            start: ['/*', '<!--'],
+            end: ['*/', '-->']
+          }
+        }
+      ]
+    }
+  ]
+};
+```
+Make sure to use the same comment tag order in both "start" and "end".
 
 ## Laravel Mix sample
 
